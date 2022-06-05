@@ -33,6 +33,7 @@ function SignIn() {
       );
 
       if (userCredential.user) {
+        toast.success('Signed in', {autoClose:500})
         navigate("/");
       }
     } catch (error) {
