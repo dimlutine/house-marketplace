@@ -14,6 +14,7 @@ function Listing() {
 
   const navigate = useNavigate();
   const params = useParams();
+  // console.log(getDoc(doc(db, "listings", params.listingId)));
   const auth = getAuth();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function Listing() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
+        
         setListing(docSnap.data());
         setLoading(false);
       }
@@ -30,7 +32,9 @@ function Listing() {
     fetchListing();
   }, [navigate, params.listingId]);
 
-  loading && <Spinner />;
+  if (loading) {
+    return <Spinner />
+  }
   console.log(listing);
   return (
     <main>
