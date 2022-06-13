@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
+import { toast } from "react-toastify";
 
 function Listing() {
   const [listing, setListing] = useState(null);
@@ -21,7 +22,6 @@ function Listing() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log(docSnap.data());
         setListing(docSnap.data());
         setLoading(false);
       }
@@ -86,9 +86,14 @@ function Listing() {
         <p className="listingLocationTitle">Location</p>
         {/* MAP */}
         {auth.currentUser?.uid !== listing.userRef && (
-            <Link to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.location}`} className='primaryButton'>
-                Contact Landlord
-            </Link>
+          <Link
+            to={`/contact/${listing.userRef}?
+            listingName=${listing.name}&
+            listingLocation=${listing.location}`}
+            className="primaryButton"
+          >
+            Contact Landlord
+          </Link>
         )}
       </div>
     </main>
