@@ -15,6 +15,7 @@ import Spinner from "../components/Spinner";
 
 function CreateListing() {
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     type: "rent",
@@ -98,7 +99,7 @@ function CreateListing() {
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
       location =
-        data.status == "ZERO_RESULTS"
+        data.status === "ZERO_RESULTS"
           ? undefined
           : data.results[0]?.formatted_address;
 

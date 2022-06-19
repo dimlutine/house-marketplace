@@ -17,6 +17,7 @@ function EditListing() {
 
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState(false)
+  // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [formData, setFormData] = useState({
     type: "rent",
@@ -61,7 +62,7 @@ function EditListing() {
           toast.error('You cannot edit that listing')
           navigate('/')
       }
-  }, [])
+  })
 
   //Fetch listing to edit
   useEffect(() => {
@@ -128,7 +129,7 @@ function EditListing() {
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
       location =
-        data.status == "ZERO_RESULTS"
+        data.status === "ZERO_RESULTS"
           ? undefined
           : data.results[0]?.formatted_address;
 
